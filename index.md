@@ -200,5 +200,5 @@ status 为0时表示等待下发，1表示下发成功，2表示下发失败。�
 
 ## 示例代码
 
-1. [PHP](https://github.com/jdfpay/jdfpay.github.io/phpsample/)
-2. [Java](https://github.com/jdfpay/jdfpay.github.io/springbootsample/)
+1. [PHP](https://github.com/jdfpay/jdfpay.github.io/tree/master/phpsample)
+2. [Java](https://github.com/jdfpay/jdfpay.github.io/tree/master/springbootsample/)
