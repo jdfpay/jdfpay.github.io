@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JDF支付对接说明文档
+title: JDF对接说明文档
 ---
 
 
@@ -17,7 +17,7 @@ title: JDF支付对接说明文档
 |mrn|是|商户平台订单号，字符串，最长可接纳64个字符
 |returnUrl|是|客人充值完成后用于返回的网址
 |sign|是|请求信息的签名信息，请参考充值接口签名说明
-|payer|否|充值者的账户实名信息，注意，该参数为可选，不参与签名。如果有中文，请使用UTF-8编码
+|payer|是|充值者的账户实名信息，注意，该参数为可选，不参与签名。如果有中文，请使用UTF-8编码
 |sourceIp|否|充值者IP地址，如果为空，则默认是订单提交方的IP地址，该参数不参与签名。
 
 ### 充值接口签名说明
@@ -57,7 +57,7 @@ title: JDF支付对接说明文档
     "collectionAccount": {
         "provider": "如果是银行卡，该字段为银行名称，其余的该字段没有意义",
         "holderName": "账户名",
-        "accountName": "银行账号或者支付宝微信账号",
+        "accountNumber": "银行账号或者支付宝微信账号",
         "phoneNumber": "手机号码（仅限微信支付）",
         "province": "所在省份（可能为null）",
         "city": "所在城市（可能为null）"
@@ -106,7 +106,7 @@ HTTP WebAPI 请求
 
 JSON 响应内容
 
-`{error: "success", "result": {Mrn: "平台单号", status: 0/1/2}}`
+`{error: "success", "result": {mrn: "平台单号", status: 0/1/2}}`
 
 status 为0时表示等待客人支付，1表示支付成功，2表示支付失败。如果返回的status是1且callback是true，那么平台会再次回调callbackUrl，请参考充值回调说明。
 
@@ -136,7 +136,7 @@ status 为0时表示等待客人支付，1表示支付成功，2表示支付失�
 
 |参数|必须|描述|
 |---|---|---|
-|amount|是|订单金额，必须是整数，单位：元 |
+|amount|是|订单金额，必须是整数，单位：元。格式範例：501請送501.00。|
 |appKey|是|商户用户接口调用的Key信息，如果不清楚请联系客服|
 |bankName|是|银行名称|
 |accountName|是|银行账户名|
@@ -213,11 +213,11 @@ HTTP WebAPI 请求
 
 JSON 响应内容
 
-`{error: "success", "result": {Mrn: "平台单号", status: 0/1/2}}`
+`{error: "success", "result": {mrn: "平台单号", status: 0/1/2}}`
 
 status 为0时表示等待下发，1表示下发成功，2表示下发失败。如果返回的status是1且callback是true，那么平台会再次回调callbackUrl，请参考下发回调说明。
 
 ## 示例代码
 
-1. [PHP](https://github.com/jdfpay/jdfpay.github.io/tree/master/phpsample)
-2. [Java](https://github.com/jdfpay/jdfpay.github.io/tree/master/springbootsample/)
+1. [PHP](https://github.com/lhxpay/phpsample/)
+2. [Java](https://github.com/lhxpay/springbootsample/)
